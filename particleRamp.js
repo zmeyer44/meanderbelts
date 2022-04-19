@@ -3,6 +3,7 @@ function Particle() {
   this.vel = createVector(0, 0);
   this.acc = createVector(0, 0);
   this.maxspeed = 4;
+  this.h = 0;
 
   this.prevPos = this.pos.copy();
 
@@ -25,7 +26,11 @@ function Particle() {
     this.acc.add(force);
   };
   this.show = function () {
-    stroke(0, 5);
+    stroke(this.h, 255, 255, 35);
+    this.h = this.h + 0.025;
+    if (this.h > 255) {
+      this.h = 0;
+    }
     strokeWeight(1);
     // point(this.pos.x, this.pos.y);
     line(this.pos.x, this.pos.y, this.prevPos.x, this.prevPos.y);
